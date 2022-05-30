@@ -146,7 +146,7 @@ return [
             ],
         ],
         'templating' => [
-            //'cache_dir' => '%project.var_dir%/views',
+            'cache_dir' => '%project.var_dir%/views',
             'paths' => [
                 '%project_dir%/resources/templates',
                 \dirname((new ReflectionClass(AppVariable::class))->getFileName()) . '/Resources/views/Form',
