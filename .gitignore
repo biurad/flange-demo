@@ -58,7 +58,7 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
+vendor/*
 composer.lock
 
 #-------------------------
@@ -85,7 +85,7 @@ _modules/*
 
 # Netbeans
 nbproject/
-build/
+./build/
 nbbuild/
 dist/
 nbdist/
