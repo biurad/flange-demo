@@ -1,5 +1,5 @@
 {
-    "name": "biurad/framework",
+    "name": "divineniiquaye/rade-blog",
     "description": "PHP Rade Framework is a high performance framework with expressive, elegant syntax, and maintainable",
     "keywords": ["biurad","psr-standard","psr-7","psr-14","psr-11","psr-15","psr-17","php","php framework"],
     "type": "project",
@@ -31,18 +31,40 @@
     },
     "require": {
         "php": "^8.0",
+        "ext-pdo_sqlite": "*",
+        "biurad/annotations": "1.*",
+        "biurad/security": "1.*",
+        "biurad/templating": "1.*",
         "divineniiquaye/php-rade": "2.*",
+        "doctrine/dbal": "^3.3",
+        "doctrine/orm": "^2.12",
+        "league/commonmark": "^2.3",
         "nikic/php-parser": "^4.13",
-        "tracy/tracy": "^2.9"
+        "symfony/asset": "^6.0",
+        "symfony/cache": "^6.0",
+        "symfony/event-dispatcher": "^6.0",
+        "symfony/form": "^6.0",
+        "symfony/mailer": "^6.0",
+        "symfony/rate-limiter": "^6.0",
+        "symfony/security-csrf": "^6.0",
+        "symfony/translation": "^6.0",
+        "symfony/twig-bridge": "^6.0",
+        "symfony/validator": "^6.0",
+        "tracy/tracy": "^2.9",
+        "twig/intl-extra": "^3.3",
+        "twig/markdown-extra": "^3.3",
+        "twig/twig": "^3.3"
     },
     "require-dev": {
+        "doctrine/data-fixtures": "^1.5",
         "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "^3.6",
+        "symfony/stopwatch": "^6.0",
         "symfony/var-dumper": "^6.0"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
@@ -51,9 +73,7 @@
         }
     },
     "suggest": {
-      "symfony/cache": "Adds a cache layer to the application",
-      "symfony/dotenv": "Allows to load environment variables from a .env file",
-      "symfony/event-dispatcher": "Allows to register symfony's supported listeners and trigger events"
+      "symfony/dotenv": "Allows to load environment variables from a .env file"
     },
     "scripts": {
         "post-create-project-cmd": [
