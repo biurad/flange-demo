@@ -1,15 +1,10 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 /*
- * This file is part of Biurad opensource projects.
+ * This file is part of RadePHP Demo Project
  *
- * PHP version 8.0 and above required
- *
- * @author    Divine Niiquaye Ibok <divineibok@gmail.com>
- * @copyright 2019 Biurad Group (https://biurad.com/)
- * @license   https://opensource.org/licenses/BSD-3-Clause License
+ * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
+ * @license   https://opensource.org/licenses/MIT License
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,7 +14,6 @@ namespace App\Tests\Feature;
 
 use App\Tests\TestCase;
 use App\Tests\Traits\InteractsWithHttp;
-use Flight\Routing\Route;
 use Psr\Http\Message\ResponseInterface;
 
 class BasicTest extends TestCase
@@ -31,29 +25,37 @@ class BasicTest extends TestCase
      * using a different set of data each time.
      *
      * @dataProvider getPublicUrls
+     * @runInSeparateProcess
      */
-    public function testRoutingActionWorks(string $uri, string $body): void
+    public function testRoutingActionWorks(string $uri, int $statusCode, string $path): void
     {
-        $this->makeApp()->match($uri, Route::DEFAULT_METHODS, fn () => $body)->bind('test');
-
         $response = $this->makeApp()->handle($this->request($uri));
-        $this->assertInstanceOf(ResponseInterface::class, $response);
 
-        $this->assertEquals($body, (string) $response->getBody());
-        $this->assertEquals('text/plain; charset=utf-8', $response->getHeaderLine('Content-Type'));
-        $this->assertEquals(
-            200,
-            $response->getStatusCode(),
-            \sprintf('The %s public URL loads correctly.', $uri)
-        );
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals($statusCode, $response->getStatusCode());
+        $this->assertEquals($path, $response->getHeaderLine('Location'));
+    }
+
+    public function testRoutingWithLogin(): void
+    {
+        $app = $this->makeApp();
+        $response = $app->handle($this->request('/fr/login', 'POST')->withParsedBody([
+            '_identifier' => 'jane_admin',
+            '_password' => 'kitten'
+        ]));
+
+        $this->assertEquals(302, $response->getStatusCode());
+        $this->assertEquals('/fr/blog/', $response->getHeaderLine('Location'));
     }
 
     public function getPublicUrls(): \Generator
     {
-        yield ['/site/hello', 'I ♥ Biurad PHP Framework'];
+        yield ['/en/', 200, ''];
 
-        yield ['/site/blog/', 'Welcome To A Blog HomePage'];
+        yield ['/en/blog/', 200, ''];
 
-        yield ['/site/login', 'Welcome To Login Page'];
+        yield ['/en/profile/edit', 302, '/login'];
+
+        yield ['/admin/post/', 302, '/login'];
     }
 }
