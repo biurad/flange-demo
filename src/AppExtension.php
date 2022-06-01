@@ -12,22 +12,17 @@
 
 namespace App;
 
-use Biurad\UI\Renders\TwigRender;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Doctrine\Persistence\ObjectManager;
-use Rade\Database\Doctrine\Provider\EntityUserProvider;
 use Rade\DI\AbstractContainer;
 use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup};
 use Rade\DI\Extensions\{AliasedInterface, BootExtensionInterface, ExtensionInterface};
 use Doctrine\ORM\Mapping\{DefaultQuoteStrategy, UnderscoreNamingStrategy};
-use Symfony\Bridge\Twig\{AppVariable, Extension as TwigExtension};
+use Rade\KernelInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Tracy\Bridges\Psr\TracyToPsrLoggerAdapter;
-use Twig\{Environment, Extra as TwigExtra};
-use Twig\Loader\ArrayLoader;
 
 use function Rade\DI\Loader\{param, reference, service, tagged, value, wrap};
 
@@ -86,63 +81,16 @@ class AppExtension implements AliasedInterface, ConfigurationInterface, BootExte
             'doctrine.orm.entity_manager' => service(EntityManager::class . '::create')
                 ->args([reference('doctrine.dbal_connection.default'), reference('doctrine.orm.config')])
                 ->autowire([EntityManager::class, EntityManagerInterface::class, ObjectManager::class]),
-            'doctrine.orm.entity_provider' => service(EntityUserProvider::class, [1 => Entity\User::class])->public(false),
             'security.post_voter' => service(Security\PostVoter::class)
                 ->tag('security.voter', ['priority' => 245])
                 ->public(false),
-            'twig.environment' => service(Environment::class, [wrap(ArrayLoader::class)]),
-            'twig.render' => service(TwigRender::class, [reference('twig.environment')])
-                ->bind('addRuntimeLoader', wrap(Twig\RuntimeLoader::class))
-                ->bind('addExtension', wrap(Twig\AppExtension::class, [param('enabled_locales')]))
-                ->bind('addExtension', wrap(Twig\SourceCodeExtension::class))
-                ->bind('addExtension', wrap(Twig\WebPackEncoreExtension::class, ['%project_dir%/public/build/entrypoints.json']))
-                ->bind('addExtension', wrap(TwigExtension\CodeExtension::class, [value('vscode://file/%f:%l'), param('project_dir'), 'UTF-8']))
-                ->bind('addExtension', wrap(TwigExtension\CsrfExtension::class))
-                ->bind('addExtension', wrap(TwigExtra\Markdown\MarkdownExtension::class))
-                ->bind('addExtension', wrap(TwigExtra\Intl\IntlExtension::class))
-                ->bind('addExtension', wrap(TwigExtension\AssetExtension::class))
-                ->bind('addExtension', wrap(TwigExtension\TranslationExtension::class))
-                ->bind('addExtension', wrap(TwigExtension\SecurityExtension::class))
-                ->bind('addExtension', wrap(TwigExtension\FormExtension::class)),
-            'twig.app_variable' => service(AppVariable::class)
-                ->bind('setDebug', param('debug'))
-                ->bind('setRequestStack', reference('request_stack'))
-                ->bind('setTokenStorage', reference('security.token_storage'))
-                ->public(false),
-            'form.type.post' => service(Form\PostType::class, [wrap(AsciiSlugger::class, [param('default_locale')])])
-                ->tag('form.type')
-                ->public(false),
-            'form.type.tags' => service(Form\Type\TagsInputType::class)
-                ->tag('form.type')
-                ->public(false),
-            'app.events_listener' => service(EventListener\AppEventListener::class)
-                ->tag('event_subscriber')
-                ->public(false),
         ];
 
-        if ($container->has('console')) {
-            $definitions += [
-                'security.validator' => service(Security\Validator::class)->autowire(),
-                'doctrine.data_fixtures_loader' => service(DataFixtures\AppFixtures::class)
-                    ->tag('doctrine.data_fixtures_loader')
-                    ->public(false),
-                'console.command.orm_data_fixtures' => service(Command\DataFixturesCommand::class)
-                    ->arg(1, tagged('doctrine.data_fixtures_loader'))
-                    ->tag('console.command')
-                    ->public(false),
-                'console.command.add_user' => service(Command\AddUserCommand::class)
-                    ->tag('console.command')
-                    ->public(false),
-                'console.command.delete_user' => service(Command\DeleteUserCommand::class)
-                    ->tag('console.command')
-                    ->public(false),
-                'console.command.list_users' => service(Command\ListUsersCommand::class, [1 => param('project_email')])
-                    ->tag('console.command')
-                    ->public(false),
-            ];
-        }
-
         $container->multiple($definitions);
+
+        if ($container instanceof KernelInterface) {
+            $container->load('service.php');
+        }
     }
 
     /**

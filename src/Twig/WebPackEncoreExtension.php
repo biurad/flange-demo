@@ -14,6 +14,7 @@ namespace App\Twig;
 
 use Biurad\UI\Html\HtmlElement;
 use Psr\Cache\CacheItemPoolInterface;
+use Rade\DI\Attribute\Inject;
 use Symfony\Component\Asset\Packages;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -28,8 +29,11 @@ class WebPackEncoreExtension extends AbstractExtension
     private ?array $entryLookup = null;
     private array $loadedEntries = [];
 
-    public function __construct(private string $entryPointFile, private Packages $packages, private ?CacheItemPoolInterface $cachePool = null)
-    {
+    public function __construct(
+        #[Inject('%project_dir%/public/build/entrypoints.json', Inject::VALUE)] private string $entryPointFile,
+        private Packages $packages,
+        private ?CacheItemPoolInterface $cachePool = null
+    ) {
     }
 
     public function getFunctions(): array

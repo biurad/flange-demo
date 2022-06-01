@@ -14,6 +14,7 @@ namespace App\Twig;
 
 use Flight\Routing\Generator\GeneratedUri;
 use Flight\Routing\Interfaces\UrlGeneratorInterface;
+use Rade\DI\Attribute\Inject;
 use Symfony\Component\Intl\Locales;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -29,9 +30,10 @@ class AppExtension extends AbstractExtension
     private ?array $locales = null;
 
     // The $locales argument is injected thanks to the service container.
-    // See https://symfony.com/doc/current/service_container.html#binding-arguments-by-name-or-type
-    public function __construct(string $localeCodes, private UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        #[Inject('enabled_locales', Inject::PARAMETER)] string $localeCodes,
+        private UrlGeneratorInterface $urlGenerator
+    ) {
         $localeCodes = \explode('|', $localeCodes);
         \sort($localeCodes);
 

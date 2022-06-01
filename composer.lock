@@ -542,12 +542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/divineniiquaye/php-rade.git",
-                "reference": "3dea1ac1707de9b24daea2ee3f9ccf82f35d48f3"
+                "reference": "8e1d739006685a2196a1aa3512926a75853e33f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/divineniiquaye/php-rade/zipball/3dea1ac1707de9b24daea2ee3f9ccf82f35d48f3",
-                "reference": "3dea1ac1707de9b24daea2ee3f9ccf82f35d48f3",
+                "url": "https://api.github.com/repos/divineniiquaye/php-rade/zipball/8e1d739006685a2196a1aa3512926a75853e33f6",
+                "reference": "8e1d739006685a2196a1aa3512926a75853e33f6",
                 "shasum": ""
             },
             "require": {
@@ -653,7 +653,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-06-01T11:29:53+00:00"
+            "time": "2022-06-01T15:16:05+00:00"
         },
         {
             "name": "divineniiquaye/rade-di",
@@ -661,12 +661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/divineniiquaye/rade-di.git",
-                "reference": "861e8f63b53cd5bddc1e7e10cb1eb5730ae30119"
+                "reference": "8871acd83ce14af6b5e96b4d74afde9996bf27f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/divineniiquaye/rade-di/zipball/861e8f63b53cd5bddc1e7e10cb1eb5730ae30119",
-                "reference": "861e8f63b53cd5bddc1e7e10cb1eb5730ae30119",
+                "url": "https://api.github.com/repos/divineniiquaye/rade-di/zipball/8871acd83ce14af6b5e96b4d74afde9996bf27f9",
+                "reference": "8871acd83ce14af6b5e96b4d74afde9996bf27f9",
                 "shasum": ""
             },
             "require": {
@@ -742,7 +742,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-24T18:51:34+00:00"
+            "time": "2022-06-01T15:13:38+00:00"
         },
         {
             "name": "doctrine/cache",

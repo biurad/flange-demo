@@ -16,9 +16,6 @@ return static function (\Rade\DI\DefinitionBuilder $builder): void {
     // Write service definitions here ...
     $c = $builder->getContainer();
 
-    // Load repositories into container
-    $builder->namespaced('App\\Repository\\', '../src/Repository/*')->autowire();
-
     // This should be the last definition
     if (\class_exists(\Tracy\Debugger::class)) {
         $c->set('tracy.bar', service('Tracy\Debugger::getBar'))
