@@ -41,7 +41,7 @@ The RadePHP Demo Project is released under the terms of the MIT License. Please 
 This project is primarily maintained by [Divine Niiquaye Ibok][@divineniiquaye]. Contributions on this project are welcome.
 
 [1]: https://github.com/symfony/demo
-[2]: https://github.con/divineniiquaye/php-rade
+[2]: https://github.com/divineniiquaye/php-rade
 [3]: https://biurad.com/doc/php/rade
 [4]: https://getcomposer.org/
 [5]: https://github.com/divineniiquaye/rade-blog/archive/refs/heads/main.zip
