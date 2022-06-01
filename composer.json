@@ -45,6 +45,7 @@
         "symfony/event-dispatcher": "^6.0",
         "symfony/form": "^6.0",
         "symfony/mailer": "^6.0",
+        "symfony/polyfill-intl-messageformatter": "^1.25",
         "symfony/rate-limiter": "^6.0",
         "symfony/security-csrf": "^6.0",
         "symfony/translation": "^6.0",
