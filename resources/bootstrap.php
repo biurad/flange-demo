@@ -114,8 +114,7 @@ return [
             ],
             'providers' => [
                 // In this example, users are stored via Doctrine in the database
-                // To see the users at src/DataFixtures/AppFixtures.php
-                'database_users' => 'doctrine.orm.entity_provider',
+                'database_users' => App\Repository\UserRepository::class,
                 'in_memory' => [
                     'memory' => [
                         'users' => [
