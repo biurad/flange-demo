@@ -21,6 +21,7 @@ use Biurad\Http\ServerRequest;
 use Biurad\UI\Template;
 use Doctrine\ORM\EntityManagerInterface;
 use Flight\Routing\Annotation\Route;
+use Flight\Routing\Exceptions\RouteNotFoundException;
 use Flight\Routing\Interfaces\UrlGeneratorInterface;
 use Flight\Routing\Router;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -61,31 +62,32 @@ class BlogController
         return 'html' === $_format ? new HtmlResponse($template) : new XmlResponse($template);
     }
 
-    #[Route('/posts/{slug:slug}', 'blog_post', ['GET'])]
+    #[Route('/posts/{slug:slug}/', 'blog_post', ['GET'])]
     public function postShow(string $slug, PostRepository $posts, FormFactoryInterface $formFactory): ResponseInterface
     {
+        $post = $posts->findOneBy(['slug' => $slug]);
+
+        if (null === $post) {
+            throw new RouteNotFoundException('No posts found', HtmlResponse::STATUS_NOT_FOUND);
+        }
         // Symfony's 'dump()' function is an improved version of PHP's 'var_dump()' but
         // it's not available in the 'prod' environment to prevent leaking sensitive information.
         // It can be used both in PHP files and Twig templates, but it requires to
         // have enabled the DebugBundle. Uncomment the following line to see it in action:
         //
-        // dump($post, $this->getUser(), new \DateTime());
-        //
-        // The result will be displayed either in the Symfony Profiler or in the stream output.
-        // See https://symfony.com/doc/current/profiler.html
         // See https://symfony.com/doc/current/templates.html#the-dump-twig-utilities
         //
         // You can also leverage Symfony's 'dd()' function that dumps and
         // stops the execution
         return new HtmlResponse(
             $this->template->render('blog/post_show.html.twig', [
-                'post' => $posts->findOneBy(['slug' => $slug]),
+                'post' => $post,
                 'form' => $formFactory->create(CommentType::class)->createView(),
             ])
         );
     }
 
-    #[Route('/search', 'blog_search', ['GET'])]
+    #[Route('/search/', 'blog_search', ['GET'])]
     public function search(?string $_locale, ServerRequest $request, Router $router, PostRepository $posts): ResponseInterface
     {
         $request = $request->getRequest();
@@ -112,7 +114,7 @@ class BlogController
         return new JsonResponse($results);
     }
 
-    #[Route('/comment/{postSlug:slug}/new', methods: ['POST'], name: 'comment_new')]
+    #[Route('/comment/{postSlug:slug}/new/', methods: ['POST'], name: 'comment_new')]
     public function commentNew(
         ?string $_locale,
         string $postSlug,

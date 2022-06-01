@@ -34,7 +34,7 @@ class SecurityController
     {
     }
 
-    #[Route('/login', 'security_login', ['GET', 'POST'])]
+    #[Route('/login/', 'security_login', ['GET', 'POST'])]
     public function login(
         ?string $_locale,
         ServerRequest $request,
@@ -70,7 +70,7 @@ class SecurityController
     /**
      * This is the route the user can use to logout.
      */
-    #[Route('/logout', 'security_logout', 'GET')]
+    #[Route('/logout/', 'security_logout', 'GET')]
     public function logout(
         ?string $_locale,
         ServerRequest $request,
