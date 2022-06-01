@@ -44,7 +44,7 @@ if (\is_file($env = BR_PATH . '.env')) {
 }
 
 // Enable the error handler
-\Tracy\Debugger::enable($debug = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? null, BR_PATH . 'var/logs');
+\Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT, BR_PATH . 'var/logs');
 
 // PSR-11 Container instance
 $app = \Rade\AppBuilder::build(
@@ -59,7 +59,7 @@ $app = \Rade\AppBuilder::build(
         $creator->addResource(new \Symfony\Component\Config\Resource\FileResource($services));
     },
     [
-        'debug' => $debug ?? true,
+        'debug' => true,
         'cacheDir' => BR_PATH . '/var/app',
     ]
 );
