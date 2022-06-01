@@ -18,6 +18,7 @@ use Doctrine\DBAL\Sharding\PoolingShardConnection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\Common\DataFixtures\{FixtureInterface, Loader};
+use Rade\DI\Attribute\Tagged;
 use Symfony\Component\Console\Input\{InputInterface, InputOption};
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -34,8 +35,10 @@ class DataFixturesCommand extends Command
     /**
      * @param array<int,FixtureInterface> $fixtureFactories
      */
-    public function __construct(private EntityManagerInterface $doctrine, array $fixtureFactories = [])
-    {
+    public function __construct(
+        private EntityManagerInterface $doctrine,
+        #[Tagged('doctrine.data_fixtures_loader')] array $fixtureFactories = []
+    ) {
         parent::__construct();
         $this->fixturesLoader = new Loader();
 

@@ -14,6 +14,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Rade\DI\Attribute\Inject;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\{InputInterface, InputOption};
 use Symfony\Component\Console\Output\{BufferedOutput, OutputInterface};
@@ -36,8 +37,11 @@ use Symfony\Component\Mime\Email;
  */
 class ListUsersCommand extends Command
 {
-    public function __construct(private MailerInterface $mailer, private string $emailSender, private UserRepository $users)
-    {
+    public function __construct(
+        private MailerInterface $mailer,
+        private UserRepository $users,
+        #[Inject('project_email', Inject::PARAMETER)] private string $emailSender
+    ) {
         parent::__construct();
     }
 
