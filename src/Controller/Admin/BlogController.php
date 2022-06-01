@@ -67,7 +67,7 @@ class BlogController
     /**
      * Creates a new Post entity.
      */
-    #[Route('/new', 'admin_post_new', ['GET', 'POST'])]
+    #[Route('/new/', 'admin_post_new', ['GET', 'POST'])]
     public function new(
         ?string $_locale,
         ServerRequest $request,
@@ -113,7 +113,7 @@ class BlogController
     /**
      * Finds and displays a Post entity.
      */
-    #[Route('/{id:\d+}', 'admin_post_show', ['GET'])]
+    #[Route('/{id:\d+}/', 'admin_post_show', ['GET'])]
     public function show(int $id, PostRepository $posts): ResponseInterface
     {
         $post = $posts->findOneBy(['id' => $id]);
@@ -129,7 +129,7 @@ class BlogController
     /**
      * Displays a form to edit an existing Post entity.
      */
-    #[Route('/{id:\d+}/edit', 'admin_post_edit', ['GET', 'POST'])]
+    #[Route('/{id:\d+}/edit/', 'admin_post_edit', ['GET', 'POST'])]
     public function edit(
         int $id,
         ?string $_locale,
@@ -162,7 +162,7 @@ class BlogController
     /**
      * Deletes a Post entity.
      */
-    #[Route('/{id}/delete', 'admin_post_delete', ['POST'])]
+    #[Route('/{id}/delete/', 'admin_post_delete', ['POST'])]
     public function delete(
         int $id,
         ?string $_locale,

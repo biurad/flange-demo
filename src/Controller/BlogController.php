@@ -21,6 +21,7 @@ use Biurad\Http\ServerRequest;
 use Biurad\UI\Template;
 use Doctrine\ORM\EntityManagerInterface;
 use Flight\Routing\Annotation\Route;
+use Flight\Routing\Exceptions\RouteNotFoundException;
 use Flight\Routing\Interfaces\UrlGeneratorInterface;
 use Flight\Routing\Router;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -61,7 +62,7 @@ class BlogController
         return 'html' === $_format ? new HtmlResponse($template) : new XmlResponse($template);
     }
 
-    #[Route('/posts/{slug:slug}', 'blog_post', ['GET'])]
+    #[Route('/posts/{slug:slug}/', 'blog_post', ['GET'])]
     public function postShow(string $slug, PostRepository $posts, FormFactoryInterface $formFactory): ResponseInterface
     {
         $post = $posts->findOneBy(['slug' => $slug]);
@@ -86,7 +87,7 @@ class BlogController
         );
     }
 
-    #[Route('/search', 'blog_search', ['GET'])]
+    #[Route('/search/', 'blog_search', ['GET'])]
     public function search(?string $_locale, ServerRequest $request, Router $router, PostRepository $posts): ResponseInterface
     {
         $request = $request->getRequest();
@@ -113,7 +114,7 @@ class BlogController
         return new JsonResponse($results);
     }
 
-    #[Route('/comment/{postSlug:slug}/new', methods: ['POST'], name: 'comment_new')]
+    #[Route('/comment/{postSlug:slug}/new/', methods: ['POST'], name: 'comment_new')]
     public function commentNew(
         ?string $_locale,
         string $postSlug,

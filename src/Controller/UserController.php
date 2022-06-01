@@ -38,7 +38,7 @@ class UserController
     {
     }
 
-    #[Route('/edit', 'user_edit', ['GET', 'POST'])]
+    #[Route('/edit/', 'user_edit', ['GET', 'POST'])]
     public function edit(
         ?string $_locale,
         ServerRequest $request,
@@ -65,7 +65,7 @@ class UserController
         );
     }
 
-    #[Route('/change-password', methods: ['GET', 'POST'], name: 'user_change_password')]
+    #[Route('/change-password/', methods: ['GET', 'POST'], name: 'user_change_password')]
     public function changePassword(
         ?string $_locale,
         ServerRequest $request,
