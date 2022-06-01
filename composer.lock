@@ -447,16 +447,16 @@
         },
         {
             "name": "divineniiquaye/flight-routing",
-            "version": "v1.6.3",
+            "version": "v1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/divineniiquaye/flight-routing.git",
-                "reference": "7ca37363d277c98abb5b0da8e760097fd7c6f8a7"
+                "reference": "d458895a4aa4cd6556b229711211b7b8100f5334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/divineniiquaye/flight-routing/zipball/7ca37363d277c98abb5b0da8e760097fd7c6f8a7",
-                "reference": "7ca37363d277c98abb5b0da8e760097fd7c6f8a7",
+                "url": "https://api.github.com/repos/divineniiquaye/flight-routing/zipball/d458895a4aa4cd6556b229711211b7b8100f5334",
+                "reference": "d458895a4aa4cd6556b229711211b7b8100f5334",
                 "shasum": ""
             },
             "require": {
@@ -534,7 +534,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-29T14:28:01+00:00"
+            "time": "2022-06-01T10:03:40+00:00"
         },
         {
             "name": "divineniiquaye/php-rade",
@@ -542,12 +542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/divineniiquaye/php-rade.git",
-                "reference": "3ae0ae71c4d0a0369a19cdce674a71f0709ffe06"
+                "reference": "3dea1ac1707de9b24daea2ee3f9ccf82f35d48f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/divineniiquaye/php-rade/zipball/3ae0ae71c4d0a0369a19cdce674a71f0709ffe06",
-                "reference": "3ae0ae71c4d0a0369a19cdce674a71f0709ffe06",
+                "url": "https://api.github.com/repos/divineniiquaye/php-rade/zipball/3dea1ac1707de9b24daea2ee3f9ccf82f35d48f3",
+                "reference": "3dea1ac1707de9b24daea2ee3f9ccf82f35d48f3",
                 "shasum": ""
             },
             "require": {
@@ -653,7 +653,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-30T11:11:02+00:00"
+            "time": "2022-06-01T11:29:53+00:00"
         },
         {
             "name": "divineniiquaye/rade-di",
@@ -2285,16 +2285,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.13.2",
+            "version": "v4.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "210577fe3cf7badcc5814d99455df46564f3c077"
+                "reference": "34bea19b6e03d8153165d8f30bba4c3be86184c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/210577fe3cf7badcc5814d99455df46564f3c077",
-                "reference": "210577fe3cf7badcc5814d99455df46564f3c077",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/34bea19b6e03d8153165d8f30bba4c3be86184c1",
+                "reference": "34bea19b6e03d8153165d8f30bba4c3be86184c1",
                 "shasum": ""
             },
             "require": {
@@ -2335,9 +2335,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.2"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.14.0"
             },
-            "time": "2021-11-30T19:35:32+00:00"
+            "time": "2022-05-31T20:59:12+00:00"
         },
         {
             "name": "psr/cache",
@@ -6011,16 +6011,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.9.2",
+            "version": "v2.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "03965a7cb94d284dbf7e3b788b3691715c13d401"
+                "reference": "3aadc88c00d7aca84ce2f07da236a703cc183d52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/03965a7cb94d284dbf7e3b788b3691715c13d401",
-                "reference": "03965a7cb94d284dbf7e3b788b3691715c13d401",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/3aadc88c00d7aca84ce2f07da236a703cc183d52",
+                "reference": "3aadc88c00d7aca84ce2f07da236a703cc183d52",
                 "shasum": ""
             },
             "require": {
@@ -6079,9 +6079,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/tracy/issues",
-                "source": "https://github.com/nette/tracy/tree/v2.9.2"
+                "source": "https://github.com/nette/tracy/tree/v2.9.3"
             },
-            "time": "2022-04-28T04:03:34+00:00"
+            "time": "2022-05-30T19:31:14+00:00"
         },
         {
             "name": "twig/intl-extra",
