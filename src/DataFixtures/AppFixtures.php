@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,11 +12,12 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\{Comment, Post, Tag, User};
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use App\Entity\{Comment, Post, Tag, User};
 use Symfony\Component\String\Slugger\{AsciiSlugger, SluggerInterface};
+
 use function Symfony\Component\String\u;
 
 class AppFixtures extends AbstractFixture
@@ -59,7 +60,7 @@ class AppFixtures extends AbstractFixture
             $tag->setName($name);
 
             $manager->persist($tag);
-            $this->addReference('tag-' . $name, $tag);
+            $this->addReference('tag-'.$name, $tag);
         }
 
         $manager->flush();
@@ -81,7 +82,7 @@ class AppFixtures extends AbstractFixture
                 $comment = new Comment();
                 $comment->setAuthor($this->getReference('john_user'));
                 $comment->setContent($this->getRandomText(\random_int(255, 512)));
-                $comment->setPublishedAt(new \DateTime('now + ' . $i . 'seconds'));
+                $comment->setPublishedAt(new \DateTime('now + '.$i.'seconds'));
 
                 $post->addComment($comment);
             }
@@ -128,7 +129,7 @@ class AppFixtures extends AbstractFixture
                 (string) $this->slugger->slug($title)->lower(),
                 $this->getRandomText(),
                 $this->getPostContent(),
-                new \DateTime('now - ' . $i . 'days'),
+                new \DateTime('now - '.$i.'days'),
                 // Ensure that the first post is written by Jane Doe to simplify tests
                 $this->getReference(['jane_admin', 'tom_admin'][0 === $i ? 0 : \random_int(0, 1)]),
                 $this->getRandomTags(),
@@ -233,6 +234,6 @@ class AppFixtures extends AbstractFixture
         \shuffle($tagNames);
         $selectedTags = \array_slice($tagNames, 0, \random_int(2, 4));
 
-        return \array_map(fn ($tagName) => $this->getReference('tag-' . $tagName), $selectedTags);
+        return \array_map(fn ($tagName) => $this->getReference('tag-'.$tagName), $selectedTags);
     }
 }

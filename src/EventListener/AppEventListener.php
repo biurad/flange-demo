@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -13,17 +13,17 @@
 namespace App\EventListener;
 
 use Biurad\Http\Request;
+use Biurad\Http\Response\{HtmlResponse, RedirectResponse};
 use Biurad\Security\Handler\FirewallAccessHandler;
 use Flange\Event\{ControllerEvent, ExceptionEvent, RequestEvent, ResponseEvent};
 use Flange\Events;
+use Flight\Routing\Router;
 use Nette\Utils\Callback;
 use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Biurad\Http\Response\{HtmlResponse, RedirectResponse};
-use Flight\Routing\Router;
-use Symfony\Component\Security\Core\User\{EquatableInterface, UserProviderInterface};
 use Symfony\Component\Security\Core\Exception\{AccessDeniedException, UnsupportedUserException, UserNotFoundException};
+use Symfony\Component\Security\Core\User\{EquatableInterface, UserProviderInterface};
 
 /**
  * @author Divine Niiquaye Ibok <divineibok@gmail.com>
@@ -38,7 +38,7 @@ class AppEventListener implements EventSubscriberInterface
         return [
             Events::REQUEST => [['onRequest'], ['refreshToken']],
             Events::CONTROLLER => 'onController',
-            //Events::RESPONSE => 'onResponse',
+            // Events::RESPONSE => 'onResponse',
             Events::EXCEPTION => 'onException',
         ];
     }
@@ -85,7 +85,7 @@ class AppEventListener implements EventSubscriberInterface
                 if ($user instanceof EquatableInterface && !$user->isEqualTo($refreshedUser)) {
                     return;
                 }
-            } catch (UnsupportedUserException | UserNotFoundException) {
+            } catch (UnsupportedUserException|UserNotFoundException) {
                 return;
             }
 
@@ -146,8 +146,8 @@ class AppEventListener implements EventSubscriberInterface
 
         $code = $event->getThrowable()->getCode();
         $response = $container->get('templating')->renderTemplates([
-            'errors/error' . $code . '.html.twig', // error.xxx.html.twig format ...
-            'errors/error' . '.html.twig',
+            'errors/error'.$code.'.html.twig', // error.xxx.html.twig format ...
+            'errors/error.html.twig',
         ], []);
 
         if (null !== $response) {

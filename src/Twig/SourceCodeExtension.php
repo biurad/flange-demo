@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -14,6 +14,7 @@ namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\{Environment, TemplateWrapper, TwigFunction};
+
 use function Symfony\Component\String\u;
 
 /**
@@ -61,7 +62,7 @@ class SourceCodeExtension extends AbstractExtension
 
         $classCode = \file($method->getFileName());
         $methodCode = \array_slice($classCode, $method->getStartLine() - 1, $method->getEndLine() - $method->getStartLine() + 1);
-        $controllerCode = '    ' . $method->getDocComment() . "\n" . \implode('', $methodCode);
+        $controllerCode = '    '.$method->getDocComment()."\n".\implode('', $methodCode);
 
         return [
             'file_path' => $method->getFileName(),
@@ -93,16 +94,12 @@ class SourceCodeExtension extends AbstractExtension
     {
         $codeLines = u($code)->split("\n");
 
-        $indentedOrBlankLines = \array_filter($codeLines, static function ($lineOfCode) {
-            return u((string) $lineOfCode)->isEmpty() || u((string) $lineOfCode)->startsWith('    ');
-        });
+        $indentedOrBlankLines = \array_filter($codeLines, static fn ($lineOfCode) => u((string) $lineOfCode)->isEmpty() || u((string) $lineOfCode)->startsWith('    '));
 
         $codeIsIndented = \count($indentedOrBlankLines) === \count($codeLines);
 
         if ($codeIsIndented) {
-            $unindentedLines = \array_map(static function ($lineOfCode) {
-                return u((string) $lineOfCode)->after('    ');
-            }, $codeLines);
+            $unindentedLines = \array_map(static fn ($lineOfCode) => u((string) $lineOfCode)->after('    '), $codeLines);
             $code = u("\n")->join($unindentedLines)->toString();
         }
 

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,9 +12,9 @@
 
 namespace App\Controller;
 
+use App\Entity\{Comment, Post};
 use App\Event\CommentCreatedEvent;
 use App\Form\CommentType;
-use App\Entity\{Comment, Post};
 use App\Repository\{PostRepository, TagRepository};
 use Biurad\Http\Response\{HtmlResponse, JsonResponse, RedirectResponse, XmlResponse};
 use Biurad\Http\ServerRequest;
@@ -54,7 +54,7 @@ class BlogController
             $tag = $tags->findOneBy(['name' => $tagName = $request->query->get('tag')]);
         }
 
-        $template = $this->template->render('blog/index.' . $_format . '.twig', [
+        $template = $this->template->render('blog/index.'.$_format.'.twig', [
             'paginator' => $posts->findLatest($page, $tag),
             'tagName' => $tagName ?? null,
         ]);

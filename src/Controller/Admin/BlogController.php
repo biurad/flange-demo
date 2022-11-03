@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -16,7 +16,9 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Security\PostVoter;
+use Biurad\Http\Response\{HtmlResponse, RedirectResponse};
 use Biurad\Http\ServerRequest;
+use Biurad\Security\{Authenticator, Helper};
 use Biurad\UI\Template;
 use Doctrine\ORM\EntityManagerInterface;
 use Flight\Routing\Annotation\Route;
@@ -26,8 +28,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Exception\SessionNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Biurad\Security\{Authenticator, Helper};
-use Biurad\Http\Response\{HtmlResponse, RedirectResponse};
 use Symfony\Component\Security\Csrf\{CsrfToken, CsrfTokenManagerInterface};
 
 /**

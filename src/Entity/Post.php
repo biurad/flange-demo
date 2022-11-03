@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -37,10 +37,8 @@ class Post
     #[ORM\Column(type: Types::TEXT)] private ?string $content = null;
     #[ORM\Column('published_at', Types::DATETIME_MUTABLE)] private \DateTime $publishedAt;
     #[ORM\ManyToOne(User::class, ['persist']), ORM\JoinColumn(nullable: false)] private ?User $author = null;
-
     /** @var Comment[]|Collection */
     #[ORM\OneToMany('post', Comment::class, cascade: ['persist'], orphanRemoval: true)] private Collection $comments;
-
     /** @var Tag[]|Collection */
     #[ORM\ManyToMany(Tag::class, cascade: ['persist']), ORM\JoinTable('rade_demo_post_tag'), ORM\OrderBy(['name' => 'ASC'])]
     private Collection $tags;

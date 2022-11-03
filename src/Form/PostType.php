@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -13,10 +13,10 @@
 namespace App\Form;
 
 use App\Entity\Post;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\Type\{DateTimePickerType, TagsInputType};
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\{AbstractType, FormBuilderInterface, FormEvent, FormEvents};
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\String\Slugger\{AsciiSlugger, SluggerInterface};
 
 /**

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,8 +12,8 @@
 
 namespace App\Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
 use Flange\Application;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -22,16 +22,16 @@ abstract class TestCase extends BaseTestCase
     protected function tearDown(): void
     {
         parent::tearDown();
-        //$this->app = null; // Uncomment this line if you want to reset the application after each test
+        // $this->app = null; // Uncomment this line if you want to reset the application after each test
     }
 
     protected function makeApp(bool $debug = true): Application
     {
         if (null == $this->app) {
-            [$extensions, $config] = require __DIR__ . '/../resources/bootstrap.php';
+            [$extensions, $config] = require __DIR__.'/../resources/bootstrap.php';
             $this->app = new Application(debug: $debug);
             $this->app->loadExtensions($extensions, $config);
-            //$this->app->load(__DIR__ . '/../resources/services.php');
+            // $this->app->load(__DIR__ . '/../resources/services.php');
         }
 
         return $this->app; // Boot Application ...

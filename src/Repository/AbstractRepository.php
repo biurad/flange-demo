@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,8 +12,8 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\{EntityManagerInterface, EntityRepository};
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\{EntityManagerInterface, EntityRepository};
 
 /**
  * This custom Doctrine repository.

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -113,7 +113,7 @@ class AddUserCommand extends Command
         $username = $input->getArgument('username');
 
         if (null !== $username) {
-            $this->io->text(' > <info>Username</info>: ' . $username);
+            $this->io->text(' > <info>Username</info>: '.$username);
         } else {
             $username = $this->io->ask('Username', null, [$this, 'validateUsername']);
             $input->setArgument('username', $username);
@@ -123,7 +123,7 @@ class AddUserCommand extends Command
         $password = $input->getArgument('password');
 
         if (null !== $password) {
-            $this->io->text(' > <info>Password</info>: ' . u('*')->repeat(u($password)->length()));
+            $this->io->text(' > <info>Password</info>: '.u('*')->repeat(u($password)->length()));
         } else {
             $password = $this->io->askHidden('Password (your type will be hidden)', [$this->validator, 'validatePassword']);
             $input->setArgument('password', $password);
@@ -133,7 +133,7 @@ class AddUserCommand extends Command
         $email = $input->getArgument('email');
 
         if (null !== $email) {
-            $this->io->text(' > <info>Email</info>: ' . $email);
+            $this->io->text(' > <info>Email</info>: '.$email);
         } else {
             $email = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
             $input->setArgument('email', $email);
@@ -143,7 +143,7 @@ class AddUserCommand extends Command
         $fullName = $input->getArgument('full-name');
 
         if (null !== $fullName) {
-            $this->io->text(' > <info>Full Name</info>: ' . $fullName);
+            $this->io->text(' > <info>Full Name</info>: '.$fullName);
         } else {
             $fullName = $this->io->ask('Full Name', null, [$this->validator, 'validateFullName']);
             $input->setArgument('full-name', $fullName);

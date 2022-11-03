@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -13,13 +13,13 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\{
     PasswordAuthenticatedUserInterface,
     PasswordUpgraderInterface,
     UserInterface,
     UserProviderInterface
 };
-use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 
 /**
  * This custom Doctrine repository is empty because so far we don't need any custom
@@ -77,6 +77,7 @@ class UserRepository extends AbstractRepository implements UserProviderInterface
         // execute the queries on the database
         $this->getEntityManager()->flush();
     }
+
     /**
      * {@inheritdoc}
      */
@@ -91,7 +92,7 @@ class UserRepository extends AbstractRepository implements UserProviderInterface
         }
 
         if (null === $refreshedUser = $this->find($id)) {
-            $e = new UserNotFoundException('User with id ' . \json_encode($id) . ' not found.');
+            $e = new UserNotFoundException('User with id '.\json_encode($id).' not found.');
             $e->setUserIdentifier(\json_encode($id));
 
             throw $e;

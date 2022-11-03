@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -16,7 +16,7 @@ use Symfony\Bridge\Twig\AppVariable;
 return [
     [
         Extensions\EventDispatcherExtension::class,
-        [Extensions\CoreExtension::class, [__DIR__ . '/../']],
+        [Extensions\CoreExtension::class, [__DIR__.'/../']],
         App\AppExtension::class,
         Extensions\Symfony\CacheExtension::class,
         Extensions\AnnotationExtension::class,
@@ -32,12 +32,12 @@ return [
             Extensions\Security\SecurityExtension::class,
             [
                 [
-                    //new Extensions\Security\Provider\CaptchaFactory(),
+                    // new Extensions\Security\Provider\CaptchaFactory(),
                     new Extensions\Security\Provider\CsrfFactory(),
                     new Extensions\Security\Provider\InMemoryFactory(),
                     new Extensions\Security\Provider\FormLoginFactory(),
-                    //new Extensions\Security\Provider\RememberMeFactory(),
-                    //new Extensions\SecurityProvider\RemoteUserFactory(),
+                    // new Extensions\Security\Provider\RememberMeFactory(),
+                    // new Extensions\SecurityProvider\RemoteUserFactory(),
                 ],
             ],
         ],
@@ -56,13 +56,13 @@ return [
         'config' => [
             'locale' => 'en',
             'paths' => ['%project_dir%/resources/config'],
-            //'cache_path' => '%project.var_dir%/cache',
+            // 'cache_path' => '%project.var_dir%/cache',
         ],
         'doctrine_dbal' => [
             'connections' => [
                 'default' => [
                     'url' => 'sqlite:///%project.var_dir%/data/database.sqlite',
-                    //'server_version' => 13, //IMPORTANT: You MUST configure your server version
+                    // 'server_version' => 13, //IMPORTANT: You MUST configure your server version
                 ],
             ],
         ],
@@ -86,8 +86,8 @@ return [
                 // Add more routes here
             ],
             'pipes' => [
-                //Biurad\Http\Middlewares\ContentTypeOptionsMiddleware::class,
-                //Biurad\Http\Middlewares\ContentLengthMiddleware::class,
+                // Biurad\Http\Middlewares\ContentTypeOptionsMiddleware::class,
+                // Biurad\Http\Middlewares\ContentLengthMiddleware::class,
             ],
         ],
         'mailer' => [
@@ -139,7 +139,7 @@ return [
             'cache_dir' => '%project.var_dir%/views',
             'paths' => [
                 '%project_dir%/resources/templates',
-                \dirname((new ReflectionClass(AppVariable::class))->getFileName()) . '/Resources/views/Form',
+                \dirname((new ReflectionClass(AppVariable::class))->getFileName()).'/Resources/views/Form',
             ],
             'globals' => [
                 'app' => Rade\DI\Loader\reference('twig.app_variable'),
@@ -152,7 +152,7 @@ return [
             'default_path' => '%project_dir%/resources/translations',
             'cache_dir' => '%project.cache_dir%/translations',
             'fallbacks' => ['%default_locale%'],
-            //'logging' => true, Uncomment if the "logger" service is registered
+            // 'logging' => true, Uncomment if the "logger" service is registered
         ],
     ],
 ];

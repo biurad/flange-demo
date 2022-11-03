@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -25,6 +25,7 @@ class BasicTest extends TestCase
      * using a different set of data each time.
      *
      * @dataProvider getPublicUrls
+     *
      * @runInSeparateProcess
      */
     public function testRoutingActionWorks(string $uri, int $statusCode, string $path): void
@@ -41,7 +42,7 @@ class BasicTest extends TestCase
         $app = $this->makeApp();
         $response = $app->handle($this->request('/fr/login/', 'POST')->withParsedBody([
             '_identifier' => 'jane_admin',
-            '_password' => 'kitten'
+            '_password' => 'kitten',
         ]));
 
         $this->assertEquals(302, $response->getStatusCode());

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,10 +12,10 @@
 
 namespace App\Controller;
 
-use Biurad\Security\{Authenticator, Helper};
 use Biurad\Http\Response\{HtmlResponse, RedirectResponse};
 use Biurad\Http\ServerRequest;
 use Biurad\Security\Handler\LogoutHandler;
+use Biurad\Security\{Authenticator, Helper};
 use Biurad\UI\Template;
 use Flight\Routing\Annotation\Route;
 use Flight\Routing\Interfaces\UrlGeneratorInterface;

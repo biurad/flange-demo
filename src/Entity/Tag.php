@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -27,7 +27,6 @@ class Tag implements \JsonSerializable
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: Types::INTEGER)] private ?int $id = null;
     #[ORM\Column(type: Types::STRING, unique: true)] private ?string $name = null;
-
     public function getId(): ?int
     {
         return $this->id;

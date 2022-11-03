@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,10 +12,10 @@
 
 namespace App\Form\Type;
 
-use Symfony\Component\Form\{AbstractType, FormBuilderInterface};
-use Symfony\Component\Validator\Constraints\{Length, NotBlank};
 use Symfony\Component\Form\Extension\Core\Type\{PasswordType, RepeatedType};
+use Symfony\Component\Form\{AbstractType, FormBuilderInterface};
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Symfony\Component\Validator\Constraints\{Length, NotBlank};
 
 /**
  * Defines the custom form field type used to change user's password.

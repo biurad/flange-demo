@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -34,7 +34,6 @@ class Comment
     #[ORM\Column(type: Types::TEXT)] private ?string $content = null;
     #[ORM\Column('published_at', Types::DATETIME_MUTABLE)] private \DateTime $publishedAt;
     #[ORM\ManyToOne(User::class), ORM\JoinColumn(nullable: false)] private ?User $author = null;
-
     public function __construct()
     {
         $this->publishedAt = new \DateTime();

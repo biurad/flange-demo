@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,8 +12,8 @@
 
 namespace App\Twig;
 
-use Flight\Routing\RouteUri as GeneratedUri;
 use Flight\Routing\Interfaces\UrlGeneratorInterface;
+use Flight\Routing\RouteUri as GeneratedUri;
 use Rade\DI\Attribute\Inject;
 use Symfony\Component\Intl\Locales;
 use Twig\Extension\AbstractExtension;

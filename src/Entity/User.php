@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -37,7 +37,6 @@ class User implements CredentialsHolderInterface, EquatableInterface
     #[ORM\Column(type: Types::STRING)] private ?string $password = null;
     #[ORM\Column(type: Types::JSON)] private array $roles = [];
     #[ORM\Column(type: Types::BOOLEAN)] private bool $enabled = true;
-
     public function getId(): ?int
     {
         return $this->id;

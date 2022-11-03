@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -12,14 +12,14 @@
 
 namespace App;
 
+use Doctrine\ORM\Mapping\{DefaultQuoteStrategy, UnderscoreNamingStrategy};
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup};
 use Doctrine\Persistence\ObjectManager;
 use Flange\KernelInterface;
 use Rade\DI\Container;
-use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup};
 use Rade\DI\Extensions\{AliasedInterface, BootExtensionInterface, ExtensionInterface};
-use Doctrine\ORM\Mapping\{DefaultQuoteStrategy, UnderscoreNamingStrategy};
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Tracy\Bridges\Psr\TracyToPsrLoggerAdapter;
@@ -72,13 +72,13 @@ class AppExtension implements AliasedInterface, ConfigurationInterface, BootExte
     public function register(Container $container, array $configs = []): void
     {
         $definitions = [
-            //'logger' => service(TracyToPsrLoggerAdapter::class, [wrap('Tracy\Debugger::getLogger')])->autowire(),
-            'doctrine.orm.config' => service(ORMSetup::class . '::createAttributeMetadataConfiguration')
+            // 'logger' => service(TracyToPsrLoggerAdapter::class, [wrap('Tracy\Debugger::getLogger')])->autowire(),
+            'doctrine.orm.config' => service(ORMSetup::class.'::createAttributeMetadataConfiguration')
                 ->args([$configs['paths'], param('debug'), $configs['proxy_dir'], reference('cache.system')])
                 ->bind('setNamingStrategy', wrap(UnderscoreNamingStrategy::class, [0, true]))
                 ->bind('setQuoteStrategy', wrap(DefaultQuoteStrategy::class))
                 ->public(false),
-            'doctrine.orm.entity_manager' => service(EntityManager::class . '::create')
+            'doctrine.orm.entity_manager' => service(EntityManager::class.'::create')
                 ->args([reference('doctrine.dbal_connection.default'), reference('doctrine.orm.config')])
                 ->typed(EntityManager::class, EntityManagerInterface::class, ObjectManager::class),
         ];
@@ -101,7 +101,7 @@ class AppExtension implements AliasedInterface, ConfigurationInterface, BootExte
 
             if ($container->has($doctrineEntity)) {
                 $args = [1 => wrap(SingleManagerProvider::class, [reference($doctrineEntity)])];
-                $container->definition('console')->call(wrap(ConsoleRunner::class . '::addCommands', $args), true);
+                $container->definition('console')->call(wrap(ConsoleRunner::class.'::addCommands', $args), true);
             }
         }
     }
