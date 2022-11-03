@@ -1,4 +1,4 @@
 @ECHO OFF
 setlocal DISABLEDELAYEDEXPANSION
-SET BIN_TARGET=%~dp0/rade
+SET BIN_TARGET=%~dp0/flange
 php "%BIN_TARGET%" %*
