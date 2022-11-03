@@ -42,9 +42,9 @@ class BlogController
     }
 
     #[
-        Route('/', 'blog_index', ['GET'], attributes: ['page' => '1', '_format' => 'html']),
-        Route('/rss.xml', 'blog_rss', ['GET'], attributes: ['page' => '1', '_format' => 'xml']),
-        Route('/page/{page:[1-9]\d*}', 'blog_index_paginated', ['GET'], attributes: ['_format' => 'html']),
+        Route('/', 'blog_index', ['GET'], arguments: ['page' => '1', '_format' => 'html']),
+        Route('/rss.xml', 'blog_rss', ['GET'], arguments: ['page' => '1', '_format' => 'xml']),
+        Route('/page/{page:[1-9]\d*}', 'blog_index_paginated', ['GET'], arguments: ['_format' => 'html']),
     ]
     public function index(ServerRequest $request, PostRepository $posts, TagRepository $tags, int $page, string $_format): ResponseInterface
     {

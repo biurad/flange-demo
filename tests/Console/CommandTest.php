@@ -19,6 +19,9 @@ class CommandTest extends TestCase
 {
     use InteractsWithConsole;
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testCommandActionWorks(): void
     {
         $command = $this->runCommand('security:list-users');

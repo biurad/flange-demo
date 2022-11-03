@@ -19,8 +19,7 @@ use Twig\{Environment, Extra as TwigExtra};
 
 return static function (\Rade\DI\DefinitionBuilder $builder): void {
     $builder
-        ->set('twig.environment', service(Environment::class, [wrap(\Twig\Loader\ArrayLoader::class)]))
-            ->public(false) // Should be private unless, required then can be autowired and changed to public
+        ->set('twig.environment', service(Environment::class, [wrap(\Twig\Loader\ArrayLoader::class)]))->public(false)
 
         ->set('twig.app_variable', service(AppVariable::class))
             ->bind('setDebug', param('debug'))
@@ -42,27 +41,19 @@ return static function (\Rade\DI\DefinitionBuilder $builder): void {
             ->bind('addExtension', wrap(TwigExtension\SecurityExtension::class))
             ->bind('addExtension', wrap(TwigExtension\FormExtension::class))
 
+        ->set('security.post_voter', service(\App\Security\PostVoter::class))
+            ->tag('security.voter', ['priority' => 245])
+            ->public(false)
+
         // Load namespaced service definitions into container
-        ->namespaced('App\\Repository\\', '../../src/Repository/*')->autowire()
-
-        ->namespaced('App\\Form\\', '../../src/Form')
-            ->tag('form.type')
-            ->public(false)
-
-        ->namespaced('App\\EventListener\\', '../../src/EventListener/*')
-            ->tag('event_subscriber')
-            ->public(false)
+        ->namespaced('App\\Repository\\', '../../src/Repository/*')->typed()
+        ->namespaced('App\\Form\\', '../../src/Form')->tag('form.type')->public(false)
+        ->namespaced('App\\EventListener\\', '../../src/EventListener/*')->tag('event_subscriber')->public(false)
 
         ->if(fn (ContainerInterface $c) => $c->has('console'))
             ->autowire('security.validator', service(\App\Security\Validator::class))
-
-            ->namespaced('App\\DataFixtures\\', '../../src/DataFixtures/*')
-                ->tag('doctrine.data_fixtures_loader')
-                ->public(true)
-
-            ->namespaced('App\\Command\\', '../../src/Command/*')
-                ->tag('console.command')
-                ->public(false)
+            ->namespaced('App\\DataFixtures\\', '../../src/DataFixtures/*')->tag('doctrine.data_fixtures_loader')->public(true)
+            ->namespaced('App\\Command\\', '../../src/Command/*')->tag('console.command')->public(false)
         ->endIf() // Incase condition is falsy, it reverts to true
 
     ->load(); // Ensures namespaced service definitions are loaded

@@ -14,7 +14,7 @@ namespace App\Form\Type;
 
 use App\Form\DataTransformer\TagArrayToStringTransformer;
 use App\Repository\TagRepository;
-use Rade\Database\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
+use Flange\Database\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\{AbstractType, FormBuilderInterface, FormInterface, FormView};
 

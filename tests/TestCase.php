@@ -13,29 +13,27 @@
 namespace App\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
-use Rade\{Application, KernelInterface};
+use Flange\Application;
 
 abstract class TestCase extends BaseTestCase
 {
-    protected Application|KernelInterface|null $app = null;
+    protected ?Application $app = null;
 
     protected function tearDown(): void
     {
         parent::tearDown();
-        $this->app = null;
+        //$this->app = null; // Uncomment this line if you want to reset the application after each test
     }
 
     protected function makeApp(bool $debug = true): Application
     {
-        if (null !== $booted = $this->app) {
-            return $booted;
+        if (null == $this->app) {
+            [$extensions, $config] = require __DIR__ . '/../resources/bootstrap.php';
+            $this->app = new Application(debug: $debug);
+            $this->app->loadExtensions($extensions, $config);
+            //$this->app->load(__DIR__ . '/../resources/services.php');
         }
 
-        [$extensions, $config] = require __DIR__ . '/../resources/bootstrap.php';
-        $rade = new Application(debug: $debug);
-        $rade->loadExtensions($extensions, $config);
-        $rade->load(__DIR__ . '/../resources/services.php');
-
-        return $this->app = $rade; // Boot Application ...
+        return $this->app; // Boot Application ...
     }
 }

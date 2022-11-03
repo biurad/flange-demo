@@ -39,7 +39,7 @@ class BasicTest extends TestCase
     public function testRoutingWithLogin(): void
     {
         $app = $this->makeApp();
-        $response = $app->handle($this->request('/fr/login', 'POST')->withParsedBody([
+        $response = $app->handle($this->request('/fr/login/', 'POST')->withParsedBody([
             '_identifier' => 'jane_admin',
             '_password' => 'kitten'
         ]));
@@ -54,8 +54,8 @@ class BasicTest extends TestCase
 
         yield ['/en/blog/', 200, ''];
 
-        yield ['/en/profile/edit', 302, '/login'];
+        yield ['/en/profile/edit', 302, '/login/'];
 
-        yield ['/admin/post/', 302, '/login'];
+        yield ['/admin/post/', 302, '/login/'];
     }
 }

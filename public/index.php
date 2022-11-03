@@ -46,9 +46,17 @@ if (\is_file($env = BR_PATH . '.env')) {
 // Enable the error handler
 \Tracy\Debugger::enable($debug = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? null, BR_PATH . 'var/logs');
 
-// PSR-11 Container instance
-$app = \Rade\AppBuilder::build(
-    static function (\Rade\AppBuilder $creator): void {
+/**
+ * --------------------------------------------------------------------------
+ * Create The Application
+ * --------------------------------------------------------------------------
+ *
+ * Using the APP_COMMAND environment variable, we can run cacheable or non-cacheable version of the application.
+ */
+$compilable = isset($_SERVER['APP_COMPILE']) || isset($_ENV['APP_COMPILE']) || true;
+
+$app = $compilable ? Flange\AppBuilder::build(
+    static function (Flange\AppBuilder $creator): void {
         [$extensions, $config] = require $bootstrap = BR_PATH . 'resources/bootstrap.php';
         $creator->loadExtensions($extensions, $config, BR_PATH . 'var/config');
         $creator->load($services = BR_PATH . 'resources/services.php');
@@ -60,9 +68,16 @@ $app = \Rade\AppBuilder::build(
     },
     [
         'debug' => $debug ?? true,
-        'cacheDir' => BR_PATH . '/var/app',
+        'cacheDir' => BR_PATH . 'var/app',
     ]
-);
+) : (static function () use ($debug): Flange\Application {
+    [$extensions, $config] = require BR_PATH . 'resources/bootstrap.php';
+    $app = new Flange\Application(debug: $debug ?? true);
+    $app->loadExtensions($extensions, $config);
+    $app->load(BR_PATH . 'resources/services.php');
+
+    return $app;
+})();
 
 try {
     $app->run(); // A kernel for dispatching application

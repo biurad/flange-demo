@@ -15,16 +15,16 @@ namespace App;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Doctrine\Persistence\ObjectManager;
-use Rade\DI\AbstractContainer;
+use Flange\KernelInterface;
+use Rade\DI\Container;
 use Doctrine\ORM\{EntityManager, EntityManagerInterface, ORMSetup};
 use Rade\DI\Extensions\{AliasedInterface, BootExtensionInterface, ExtensionInterface};
 use Doctrine\ORM\Mapping\{DefaultQuoteStrategy, UnderscoreNamingStrategy};
-use Rade\KernelInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Tracy\Bridges\Psr\TracyToPsrLoggerAdapter;
 
-use function Rade\DI\Loader\{param, reference, service, tagged, value, wrap};
+use function Rade\DI\Loader\{param, reference, service, wrap};
 
 /**
  * The default app extension.
@@ -69,7 +69,7 @@ class AppExtension implements AliasedInterface, ConfigurationInterface, BootExte
     /**
      * {@inheritdoc}
      */
-    public function register(AbstractContainer $container, array $configs): void
+    public function register(Container $container, array $configs = []): void
     {
         $definitions = [
             //'logger' => service(TracyToPsrLoggerAdapter::class, [wrap('Tracy\Debugger::getLogger')])->autowire(),
@@ -80,23 +80,21 @@ class AppExtension implements AliasedInterface, ConfigurationInterface, BootExte
                 ->public(false),
             'doctrine.orm.entity_manager' => service(EntityManager::class . '::create')
                 ->args([reference('doctrine.dbal_connection.default'), reference('doctrine.orm.config')])
-                ->autowire([EntityManager::class, EntityManagerInterface::class, ObjectManager::class]),
-            'security.post_voter' => service(Security\PostVoter::class)
-                ->tag('security.voter', ['priority' => 245])
-                ->public(false),
+                ->typed(EntityManager::class, EntityManagerInterface::class, ObjectManager::class),
         ];
 
-        $container->multiple($definitions);
-
-        if ($container instanceof KernelInterface) {
-            $container->load('service.php');
+        if (!$container instanceof KernelInterface) {
+            throw new \RuntimeException('AppExtension can only be registered on a Flange\KernelInterface instance.');
         }
+
+        $container->multiple($definitions);
+        $container->load('service.php');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function boot(AbstractContainer $container): void
+    public function boot(Container $container): void
     {
         if ($container->has('console')) {
             $doctrineEntity = 'doctrine.orm.entity_manager';

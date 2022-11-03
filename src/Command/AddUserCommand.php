@@ -31,11 +31,11 @@ use function Symfony\Component\String\u;
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
  *
- *     $ php rade security:add-user
+ *     $ php flange security:add-user
  *
  * To output detailed information, increase the command verbosity:
  *
- *     $ php rade security:add-user -vv
+ *     $ php flange security:add-user -vv
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>

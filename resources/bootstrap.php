@@ -10,14 +10,14 @@
  * file that was distributed with this source code.
  */
 
-use Rade\DI\Extensions;
+use Flange\Extensions;
 use Symfony\Bridge\Twig\AppVariable;
 
 return [
     [
+        Extensions\EventDispatcherExtension::class,
         [Extensions\CoreExtension::class, [__DIR__ . '/../']],
         App\AppExtension::class,
-        Extensions\Symfony\EventDispatcherExtension::class,
         Extensions\Symfony\CacheExtension::class,
         Extensions\AnnotationExtension::class,
         Extensions\TemplateExtension::class,
@@ -27,7 +27,7 @@ return [
         Extensions\Symfony\ValidatorExtension::class,
         Extensions\Symfony\FormExtension::class,
         Extensions\Symfony\MailerExtension::class,
-        [Extensions\Doctrine\DatabaseExtension::class, ['%debug%']],
+        Extensions\Doctrine\DatabaseExtension::class,
         [
             Extensions\Security\SecurityExtension::class,
             [
@@ -48,21 +48,17 @@ return [
             'project_email' => 'anonymous@example.com',
         ],
         'annotation' => ['%project_dir%/src/Controller'],
+        'events_dispatcher' => Symfony\Component\EventDispatcher\EventDispatcher::class,
         'assets' => [
             'base_path' => '/build',
             'json_manifest_path' => '%project_dir%/public/build/manifest.json',
         ],
-        'core' => [
-            'events_dispatcher' => Symfony\Component\EventDispatcher\EventDispatcher::class,
-        ],
         'config' => [
             'locale' => 'en',
             'paths' => ['%project_dir%/resources/config'],
+            //'cache_path' => '%project.var_dir%/cache',
         ],
-        'cache' => [
-            'directory' => '%project.var_dir%/cache',
-        ],
-        'database' => [
+        'doctrine_dbal' => [
             'connections' => [
                 'default' => [
                     'url' => 'sqlite:///%project.var_dir%/data/database.sqlite',
@@ -79,19 +75,14 @@ return [
             ],
             'headers' => [
                 'response' => [
-                    'Transfer-Encoding' => 'gzip, deflate', // A work around header for tracy debugger
-                    'Rade-PHP' => \Rade\Application::VERSION,
+                    'Flange' => Flange\Application::VERSION,
                 ],
             ],
         ],
         'routing' => [
             'cache' => '%project.cache_dir%/load_CachedRoutes.php',
-            'routes' => [
-                [
-                    'bind' => '_defaults',
-                    'path' => '/[{_locale:%enabled_locales%}]',
-                    'method' => [], // to unset default methods
-                ],
+            'import' => [
+                '@' => ['prefix' => '/[{_locale:%enabled_locales%}]'],
                 // Add more routes here
             ],
             'pipes' => [

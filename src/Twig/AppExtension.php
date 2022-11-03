@@ -12,7 +12,7 @@
 
 namespace App\Twig;
 
-use Flight\Routing\Generator\GeneratedUri;
+use Flight\Routing\RouteUri as GeneratedUri;
 use Flight\Routing\Interfaces\UrlGeneratorInterface;
 use Rade\DI\Attribute\Inject;
 use Symfony\Component\Intl\Locales;

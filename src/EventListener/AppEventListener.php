@@ -14,14 +14,14 @@ namespace App\EventListener;
 
 use Biurad\Http\Request;
 use Biurad\Security\Handler\FirewallAccessHandler;
-use Flight\Routing\Route;
+use Flange\Event\{ControllerEvent, ExceptionEvent, RequestEvent, ResponseEvent};
+use Flange\Events;
 use Nette\Utils\Callback;
 use Psr\Http\Server\RequestHandlerInterface;
-use Rade\Events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Rade\Event\{ControllerEvent, ExceptionEvent, RequestEvent, ResponseEvent};
 use Biurad\Http\Response\{HtmlResponse, RedirectResponse};
+use Flight\Routing\Router;
 use Symfony\Component\Security\Core\User\{EquatableInterface, UserProviderInterface};
 use Symfony\Component\Security\Core\Exception\{AccessDeniedException, UnsupportedUserException, UserNotFoundException};
 
@@ -100,10 +100,9 @@ class AppEventListener implements EventSubscriberInterface
         $container = $event->getApplication();
         $request = $event->getRequest();
 
-        if (null !== $route = $request->getAttribute(Route::class)) {
-            $routeName = $route->getName();
-            $routeArguments = $route->getArguments();
-            $routeHandler = $route->getHandler();
+        if (null !== $route = $request->getAttribute(Router::class)) {
+            $routeArguments = $route['arguments'] ?? [];
+            $routeHandler = $route['handler'] ?? null;
 
             if (isset($routeArguments['_locale'])) {
                 $container->get('translator')->setLocale($routeArguments['_locale']);
@@ -127,8 +126,8 @@ class AppEventListener implements EventSubscriberInterface
         }
 
         $container->get('templating')->globals += [
-            '_route' => $routeName ?? null,
-            '_route_params' => $routeArguments ?? [],
+            '_route' => $route['name'] ?? null,
+            '_route_params' => $routeArguments,
             '_route_reflection' => $routeRef ?? null,
         ];
     }

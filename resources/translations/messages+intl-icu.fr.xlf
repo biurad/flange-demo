@@ -58,11 +58,11 @@
 
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
-                <target><![CDATA[Bienvenue sur l'application <strong>RadePHP Demo</strong>]]></target>
+                <target><![CDATA[Bienvenue sur l'application <strong>Flange Demo</strong>]]></target>
             </trans-unit>
             <trans-unit id="title.note">
                 <source>title.note</source>
-                <target><![CDATA[This is a clone of symfony's demo application in RadePHP but with little changes]]></target>
+                <target><![CDATA[This is a clone of symfony's demo application in Flange but with little changes]]></target>
             </trans-unit>
             <trans-unit id="title.source_code">
                 <source>title.source_code</source>
@@ -365,7 +365,7 @@
 
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
-                <target><![CDATA[Ceci est une <strong>application de démonstration</strong> construite avec le framework RadePHP pour illustrer la façon recommandée de développer des applications RadePHP.]]></target>
+                <target><![CDATA[Ceci est une <strong>application de démonstration</strong> construite avec le framework Flange pour illustrer la façon recommandée de développer des applications Flange.]]></target>
             </trans-unit>
             <trans-unit id="help.show_code">
                 <source>help.show_code</source>
@@ -401,7 +401,7 @@
             </trans-unit>
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
-                <target><![CDATA[Pour plus d'informations, consultez la <a href="https://biurad.com/doc/php/rade">documentation de RadePHP</a>.]]></target>
+                <target><![CDATA[Pour plus d'informations, consultez la <a href="https://biurad.com/doc/php/rade">documentation de Flange</a>.]]></target>
             </trans-unit>
             <trans-unit id="help.post_summary">
                 <source>help.post_summary</source>
@@ -427,11 +427,11 @@
 
             <trans-unit id="rss.title">
                 <source>rss.title</source>
-                <target>Blog de démo RadePHP</target>
+                <target>Blog de démo Flange</target>
             </trans-unit>
             <trans-unit id="rss.description">
                 <source>rss.description</source>
-                <target>Derniers articles publiés sur le blog de démo RadePHP</target>
+                <target>Derniers articles publiés sur le blog de démo Flange</target>
             </trans-unit>
 
             <trans-unit id="paginator.previous">
