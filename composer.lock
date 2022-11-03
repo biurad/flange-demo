@@ -93,12 +93,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/biurad/flange.git",
-                "reference": "2d57744e0cfc0e440e6ec1c5cca872ad82c817f7"
+                "reference": "ec2c9987fb562dc25a91cb435ddd5767387dbae6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/biurad/flange/zipball/2d57744e0cfc0e440e6ec1c5cca872ad82c817f7",
-                "reference": "2d57744e0cfc0e440e6ec1c5cca872ad82c817f7",
+                "url": "https://api.github.com/repos/biurad/flange/zipball/ec2c9987fb562dc25a91cb435ddd5767387dbae6",
+                "reference": "ec2c9987fb562dc25a91cb435ddd5767387dbae6",
                 "shasum": ""
             },
             "require": {
@@ -209,7 +209,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-11-03T08:55:26+00:00"
+            "time": "2022-11-03T12:49:19+00:00"
         },
         {
             "name": "biurad/http-galaxy",
@@ -665,12 +665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/biurad/php-di.git",
-                "reference": "e4aac87db3fa009ee61f43d8cf3dafcfd42425a3"
+                "reference": "bf7e043168b6399858c265e3d015b650688dc13e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/biurad/php-di/zipball/e4aac87db3fa009ee61f43d8cf3dafcfd42425a3",
-                "reference": "e4aac87db3fa009ee61f43d8cf3dafcfd42425a3",
+                "url": "https://api.github.com/repos/biurad/php-di/zipball/bf7e043168b6399858c265e3d015b650688dc13e",
+                "reference": "bf7e043168b6399858c265e3d015b650688dc13e",
                 "shasum": ""
             },
             "require": {
@@ -746,7 +746,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-11-03T08:53:30+00:00"
+            "time": "2022-11-03T18:15:09+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1953,16 +1953,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "857afc47ce113454bd629037213378ba3219dd40"
+                "reference": "a36bd2be4f5387c0f3a8792a0d76b7d68865abbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/857afc47ce113454bd629037213378ba3219dd40",
-                "reference": "857afc47ce113454bd629037213378ba3219dd40",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/a36bd2be4f5387c0f3a8792a0d76b7d68865abbf",
+                "reference": "a36bd2be4f5387c0f3a8792a0d76b7d68865abbf",
                 "shasum": ""
             },
             "require": {
@@ -2055,7 +2055,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-10-30T16:45:38+00:00"
+            "time": "2022-11-03T17:29:46+00:00"
         },
         {
             "name": "league/config",
