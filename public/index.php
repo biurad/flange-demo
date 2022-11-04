@@ -44,7 +44,7 @@ if (\is_file($env = BR_PATH.'.env')) {
 }
 
 // Enable the error handler
-\Tracy\Debugger::enable($debug = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? null, BR_PATH.'var/logs');
+\Tracy\Debugger::enable($debug = $_SERVER['APP_PROD'] ?? $_ENV['APP_PROD'] ?? false, BR_PATH.'var/logs');
 
 /**
  * --------------------------------------------------------------------------
@@ -67,12 +67,12 @@ $app = $compilable ? Flange\AppBuilder::build(
         $creator->addResource(new \Symfony\Component\Config\Resource\FileResource($services));
     },
     [
-        'debug' => $debug ?? true,
+        'debug' => !$debug,
         'cacheDir' => BR_PATH.'var/app',
     ]
 ) : (static function () use ($debug): Flange\Application {
     [$extensions, $config] = require BR_PATH.'resources/bootstrap.php';
-    $app = new Flange\Application(debug: $debug ?? true);
+    $app = new Flange\Application(debug: !$debug);
     $app->loadExtensions($extensions, $config);
     $app->load(BR_PATH.'resources/services.php');
 
