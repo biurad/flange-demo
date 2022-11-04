@@ -51,9 +51,9 @@ if (\is_file($env = BR_PATH.'.env')) {
  * Create The Application
  * --------------------------------------------------------------------------
  *
- * Using the APP_COMMAND environment variable, we can run cacheable or non-cacheable version of the application.
+ * Using the APP_COMPILE environment variable, we can run cacheable or non-cacheable version of the application.
  */
-$compilable = isset($_SERVER['APP_COMPILE']) || isset($_ENV['APP_COMPILE']) || true;
+$compilable = isset($_SERVER['APP_COMPILE']) || isset($_ENV['APP_COMPILE']);
 
 $app = $compilable ? Flange\AppBuilder::build(
     static function (Flange\AppBuilder $creator): void {
