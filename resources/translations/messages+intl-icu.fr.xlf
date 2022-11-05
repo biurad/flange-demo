@@ -62,7 +62,7 @@
             </trans-unit>
             <trans-unit id="title.note">
                 <source>title.note</source>
-                <target><![CDATA[This is a clone of symfony's demo application in Flange but with little changes]]></target>
+                <target><![CDATA[Ceci est un clone de l'application de démonstration de symfony dans Flange mais avec peu de changements]]></target>
             </trans-unit>
             <trans-unit id="title.source_code">
                 <source>title.source_code</source>
@@ -401,11 +401,11 @@
             </trans-unit>
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
-                <target><![CDATA[Pour plus d'informations, consultez la <a href="https://biurad.com/doc/php/rade">documentation de Flange</a>.]]></target>
+                <target><![CDATA[Pour plus d'informations, consultez la <a href="https://github.com/biurad/flange-demo">source de code</a>.]]></target>
             </trans-unit>
             <trans-unit id="help.post_summary">
                 <source>help.post_summary</source>
-                <target>Les résumés ne peuvent pas contenir de contenu Markdown ou HTML ; seulement du texte brut.</target>
+                <target>Les résumés ne peuvent pas contenir de contenu Markdown ou HTML; seulement du texte brut.</target>
             </trans-unit>
             <trans-unit id="help.post_publication">
                 <source>help.post_publication</source>
