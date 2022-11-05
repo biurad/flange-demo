@@ -47,7 +47,7 @@ return [
             'enabled_locales' => 'en|fr',
             'project_email' => 'anonymous@example.com',
         ],
-        'annotation' => ['%project_dir%/src/Controller'],
+        'annotation' => ['%project_dir%/src/Controller', 'flangeHealthCheck'],
         'events_dispatcher' => Symfony\Component\EventDispatcher\EventDispatcher::class,
         'assets' => [
             'base_path' => '/build',

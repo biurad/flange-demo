@@ -46,6 +46,12 @@ if (\is_file($env = BR_PATH.'.env')) {
 // Enable the error handler
 \Tracy\Debugger::enable($debug = $_SERVER['APP_PROD'] ?? $_ENV['APP_PROD'] ?? false, BR_PATH.'var/logs');
 
+// To check if application is live
+#[Flight\Routing\Annotation\Route('/ping', 'health_check')] function flangeHealthCheck(): string
+{
+    return 'Flange is healthy';
+}
+
 /**
  * --------------------------------------------------------------------------
  * Create The Application
