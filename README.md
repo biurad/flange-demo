@@ -17,7 +17,7 @@ This project is a reference implementation of a [symfony's demo][1] application 
 * Run `composer update` as default packages may not be compatible with your PHP version.
 * Run `./flange serve` (on Windows `flange serve`). The application will be started on http://localhost:8000/.
 
-Want to see this blog in action, check out https://flange-blog-demo.railway.app. Deployed on [Railway][6].
+Want to see this blog in action, check out https://flange-blog-demo.up.railway.app. Deployed on [Railway][6].
 
 ## 🧪 Testing
 
