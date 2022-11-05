@@ -59,7 +59,7 @@ phpunit
 # Composer
 #-------------------------
 vendor/*
-composer.lock
+#composer.lock
 
 #-------------------------
 # NPM
