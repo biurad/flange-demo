@@ -57,9 +57,15 @@ class AppEventListener implements EventSubscriberInterface
         }
 
         if (!$isGranted) {
+            $lang = \explode('/', $event->getRequest()->getUri()->getPath())[1];
+
+            if (\str_contains($container->parameters['enabled_locales'] ?? '', $lang)) {
+                $param = ['_locale' => $lang];
+            }
+
             // if you want to support redirecting to support locale
             // Instead of authenticating a request event, authenticate a controller event
-            $event->setResponse(new RedirectResponse((string) $container->getRouter()->generateUri('security_login')));
+            $event->setResponse(new RedirectResponse((string) $container->getRouter()->generateUri('security_login', $param ?? [])));
         }
     }
 
