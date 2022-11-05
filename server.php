@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of RadePHP Demo Project
+ * This file is part of Flange Blog Demo Project
  *
  * @copyright 2022 Divine Niiquaye Ibok (https://divinenii.com/)
  * @license   https://opensource.org/licenses/MIT License
@@ -10,16 +10,16 @@
  * file that was distributed with this source code.
  */
 
- /*
- *--------------------------------------------------------------------------
- * Cli & CGI WebServer Booting
- *-------------------------------------------------------------------------
- *
- * Decline static file requests back to the PHP built-in web-server
- *
- */
+/*
+*--------------------------------------------------------------------------
+* Cli & CGI WebServer Booting
+*-------------------------------------------------------------------------
+*
+* Decline static file requests back to the PHP built-in web-server
+*
+*/
 if (\in_array(\PHP_SAPI, ['cli-server', 'cgi-fcgi'], true)) {
-    $path = \realpath(__DIR__ . \parse_url($_SERVER['REQUEST_URI'], \PHP_URL_PATH));
+    $path = \realpath(__DIR__.\parse_url($_SERVER['REQUEST_URI'], \PHP_URL_PATH));
 
     if (__FILE__ !== $path && \is_file((string) $path)) {
         return false;
@@ -27,4 +27,4 @@ if (\in_array(\PHP_SAPI, ['cli-server', 'cgi-fcgi'], true)) {
     unset($path);
 }
 
-require __DIR__ . '/public/index.php';
+require __DIR__.'/public/index.php';
