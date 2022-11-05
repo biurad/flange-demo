@@ -63,7 +63,7 @@ class BlogController
     }
 
     #[Route('/posts/{slug:slug}/', 'blog_post', ['GET'])]
-    public function postShow(string $slug, PostRepository $posts, FormFactoryInterface $formFactory): ResponseInterface
+    public function postShow(int|string $slug, PostRepository $posts, FormFactoryInterface $formFactory): ResponseInterface
     {
         $post = $posts->findOneBy(['slug' => $slug]);
 
