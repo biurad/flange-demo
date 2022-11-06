@@ -1,8 +1,8 @@
 {
     "version": 2,
     "builds": [
-        { "src": "/api/index.php", "use": "vercel-php@0.5.2" },
-        { "src": "/public/**", "use": "@vercel/static" }
+        { "src": "/public/index.php", "use": "vercel-php@0.5.2" },
+        { "src": "/public/build/**", "use": "@vercel/static" }
     ],
     "routes": [
         { "src": "/build/(.*)", "dest": "public/build/$1" },
@@ -10,7 +10,6 @@
         { "src": "/(.*)", "dest": "/public/index.php" }
     ],
     "env": {
-        "APP_COMPILE": "true",
-        "APP_PROD": "true"
+        "APP_COMPILE": "true"
     }
 }
